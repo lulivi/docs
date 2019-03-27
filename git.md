@@ -31,50 +31,52 @@
 
 Basic configuration:
 
-```bash
-$ git config --global user.name "<username>"
-$ git config --global user.email <email>
-$ git config --global core.editor <editor>
+```sh
+git config --global user.name "<username>"
+git config --global user.email <email>
+git config --global core.editor <editor>
 ```
 
 ## Pulling with unstaged/uncommited changes
 
-```bash
-$ git stash save
-$ git pull
-$ git stash pop
+```sh
+git stash save
+git pull
+git stash pop
 ```
 
 ## Branches
 
 ### Create branch from local
 
-$ git branch <new_branch_name>
-$ git checkout <new_branch_name>
-$ git push --set-upstream origin <new_branch_name>
+```sh
+git branch <new_branch_name>
+git checkout <new_branch_name>
+git push --set-upstream origin <new_branch_name>
+```
 
 ### Sync local branch with remone one
 
-```bash
-$ git checkout -b <new_branch_name>
+```sh
+git checkout -b <new_branch_name>
 # If there is different name between remote and local
-$ git branch --set-upstream-to=origin/<new_remote_branch_name> <new_branch_name>
+git branch --set-upstream-to=origin/<new_remote_branch_name> <new_branch_name>
 # Else
-$ git branch -u origin/<new_branch_name>
+git branch -u origin/<new_branch_name>
 ```
 
 ### Merge with other branch
 
-```bash
-$ git checkout <other_branch>
-$ git merge <merging_branch>
+```sh
+git checkout <other_branch>
+git merge <merging_branch>
 ```
 
 ### Delete remote/local branch
 
-```bash
-$ git push -d <remote_name> <branch_name>
-$ git branch -d <branch_name>
+```sh
+git push -d <remote_name> <branch_name>
+git branch -d <branch_name>
 ```
 
 ## Solving wrong commits
@@ -83,35 +85,35 @@ $ git branch -d <branch_name>
 
 Last commit:
 
-```bash
-$ git commit --amend
+```sh
+git commit --amend
 ```
 
 If there are more than one commits to ammend and want to do it interactively:
 
-```bash
-    # Last commit
-$ git rebase -i HEAD
+```sh
+# Last commit
+git rebase -i HEAD
 
-    # 2 last commits
-$ git rebase -i HEAD^
+# 2 last commits
+git rebase -i HEAD^
 
-    # n last commits
-$ git rebase -i HEAD~<number_of_commits>
+# n last commits
+git rebase -i HEAD~<number_of_commits>
 ```
 
 ### Forcing new tree to remote
 
-```bash
-$ git push --force
+```sh
+git push --force
 ```
 
 ### Squashing commits into one
 
 With previous command rebase, you can do:
 
-```bash
-$ git rebase -i <commit_sha_1>
+```sh
+git rebase -i <commit_sha_1>
 pick <commit_n_sha_1> <commit_n_message>
 pick <commit_n-1_sha_1> <commit_n_message>
 pick <commit_n-2_sha_1> <commit_n_message>
@@ -124,8 +126,8 @@ pick <commit_1_sha_1> <commit_n_message>
 
 You have to change pick for squash:
 
-```bash
-$ git rebase -i <commit_sha_1>
+```sh
+git rebase -i <commit_sha_1>
 pick <commit_n_sha_1> <commit_n_message>
 squash <commit_n-1_sha_1> <commit_n_message>
 squash <commit_n-2_sha_1> <commit_n_message>
@@ -142,48 +144,48 @@ squash <commit_1_sha_1> <commit_n_message>
 
 Does not touch the index file or the working tree at all
 
-```bash
-$ git reset --soft <commit>
+```sh
+git reset --soft <commit>
 ```
 
 ### Hard reset
 
-Resets the index and working tree. Any changes to tracked files in the working tree since <commit> are discarded
+Resets the index and working tree. Any changes to tracked files in the working
+tree since <commit> are discarded
 
-```bash
-$ git reset --hard <commit/tree-ish>
+```sh
+git reset --hard <commit/tree-ish>
 ```
 
 Ej:
 
-```bash
-$ git reset --hard origin/HEAD
-$ git reset --hard d771744
+```sh
+git reset --hard origin/HEAD
+git reset --hard d771744
 ```
 
 ## If you mess it up A LOT
 
 Check local repository updates with
 
-```bash
-$ git reflog
+```sh
+git reflog
 ```
 
 Then simply get back in time
 
-```bash
-$ git reset --hard HEAD@{<reflog_number>}
+```sh
+git reset --hard HEAD@{<reflog_number>}
 ```
 
 ## Git submodules
-
 
 ### Create a submodule
 
 To create a submodule:
 
-```bash
-$ git submodule add <submodule_url> [in_repo_submodule_path]
+```sh
+git submodule add <submodule_url> [in_repo_submodule_path]
 ```
 
 ### Delete a submodule
@@ -193,45 +195,51 @@ To delete it:
 
 1. Remove config entries:
 
-   ```bash
-   $ git config -f .git/config --remove-section submodule."<submodulename>"
-   $ git config -f .gitmodules --remove-section submodule."<submodulename>"
+   ```sh
+   git config -f .git/config --remove-section submodule."<submodulename>"
+   git config -f .gitmodules --remove-section submodule."<submodulename>"
    ```
 2. Remove directory from index:
 
-    ```bash
-    $ git rm --cached <submodulepath>
-```
+    ```sh
+    git rm --cached <submodulepath>
+    ```
 
 3. Commit
+
 4. Delete unused files:
 
-    ```bash
-    $ rm -rf <submodulepath>
-    $ rm -rf .git/modules/<submodulename>
+    ```sh
+    rm -rf <submodulepath>
+    rm -rf .git/modules/<submodulename>
     ```
 
 ## Cool commits graph
 
-    $ git log --graph [--oneline] [--all]
+```sh
+git log --graph [--oneline] [--all]
+```
 
 ## Forks
 
 1. Fork the repository on github
+
 1. Clone your forked repository
 
-   ```bash
-   $ git clone https://github.com/YOUR_USERNAME/YOUR_FORK.git
+   ```sh
+   git clone https://github.com/YOUR_USERNAME/YOUR_FORK.git
    ```
 
 1. Add the upstream
-   ```bash
-   $ git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
+
+   ```sh
+   git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
    ```
 
 1. Check with if everything is correct
-   ```bash
-   $ git remote -v
+
+   ```sh
+   git remote -v
    origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
    origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
    upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)
@@ -240,9 +248,8 @@ To delete it:
 
 1. Download the original repository changes after pushing to your fork
 
-    ```bash
-    $ git pull upstream <branch>
+    ```sh
+    git pull upstream <branch>
     ```
 
 1. Push and make a pull request
-
