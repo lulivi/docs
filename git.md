@@ -3,26 +3,27 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [Usefull commands of git.](#usefull-commands-of-git)
-    - [Configuration](#configuration)
-    - [Pulling with unstaged/uncommited changes](#pulling-with-unstageduncommited-changes)
-    - [Branches](#branches)
-        - [Create branch from local](#create-branch-from-local)
-        - [Sync local branch with remone one](#sync-local-branch-with-remone-one)
-        - [Merge with other branch](#merge-with-other-branch)
-        - [Delete remote/local branch](#delete-remotelocal-branch)
-    - [Solving wrong commits](#solving-wrong-commits)
-        - [Mending commits](#mending-commits)
-        - [Forcing new tree to remote](#forcing-new-tree-to-remote)
-    - [Reseting changes](#reseting-changes)
-        - [Soft reset](#soft-reset)
-        - [Hard reset](#hard-reset)
-    - [If you mess it up A LOT](#if-you-mess-it-up-a-lot)
-    - [Git submodules](#git-submodules)
-        - [Create a submodule](#create-a-submodule)
-        - [Delete a submodule](#delete-a-submodule)
-    - [Cool commits graph](#cool-commits-graph)
-    - [Forks](#forks)
+- [Configuration](#configuration)
+- [Pulling with unstaged/uncommited changes](#pulling-with-unstageduncommited-changes)
+- [Branches](#branches)
+  - [Create branch from local](#create-branch-from-local)
+  - [Sync local branch with remone one](#sync-local-branch-with-remone-one)
+  - [Merge with other branch](#merge-with-other-branch)
+  - [Delete remote/local branch](#delete-remotelocal-branch)
+- [Solving wrong commits](#solving-wrong-commits)
+  - [Mending commits](#mending-commits)
+  - [Forcing new tree to remote](#forcing-new-tree-to-remote)
+  - [Squashing commits into one](#squashing-commits-into-one)
+- [Tags](#tags)
+- [Reseting changes](#reseting-changes)
+  - [Soft reset](#soft-reset)
+  - [Hard reset](#hard-reset)
+- [If you mess it up A LOT](#if-you-mess-it-up-a-lot)
+- [Git submodules](#git-submodules)
+  - [Create a submodule](#create-a-submodule)
+  - [Delete a submodule](#delete-a-submodule)
+- [Cool commits graph](#cool-commits-graph)
+- [Forks](#forks)
 
 <!-- markdown-toc end -->
 
@@ -136,6 +137,34 @@ squash <commit_n-3_sha_1> <commit_n_message>
 squash <commit_1_sha_1> <commit_n_message>
 
 # <git rebase info>
+```
+
+## Tags
+
+Adding a new tag:
+
+```sh
+git tag -a <version> -m "<message>"
+```
+
+If you wan to add a tag for an older commit:
+
+```sh
+git checkout <commit_hash>
+GIT_COMMITTER_DATE="$(git show --format=%aD | head -1)" \
+    git tag -a <version> -m "<message>"
+```
+
+To upload the tags to remote:
+
+```sh
+git push --tags
+```
+
+Only for a specific tag:
+
+```sh
+git push origin <version>
 ```
 
 ## Reseting changes
