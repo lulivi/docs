@@ -265,6 +265,12 @@ less PKGBUILD
 makepkg -si
 ```
 
+For wireless network install broadcom dkms:
+
+```bash
+pacman -S broadcom-wl-dkms
+```
+
 ### UI
 
 Install xorg and intel drivers (if needed)
