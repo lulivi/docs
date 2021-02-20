@@ -144,12 +144,19 @@ locale-gen
 
 ### Keyboard
 
-To configure keyboard:
+To configure keyboard for the current session:
 
 ```bash
-localectl set-locale LANG=en_US.UTF-8
-localectl set-keymap us altgr-intl
-localectl set-x11-keymap us pc104 altgr-intl grp:toggle
+setxkbmap -model pc104 -layout us,us -variant altgr-intl,dvorak-alt-intl -option grp:alt_space_to
+```
+
+This will set the keyboard to US layout with dead keys using AltGr (áéíóúñ).
+Also an alternative layout with Dvorak can be switched using `Alt`+`Space`.
+
+To make this configuration default after restart, we will use `localectl`:
+
+```bash
+localectl set-x11-keymap us,us pc104 altgr-intl,dvorak-alt-intl grp:alt_space_toggle
 ```
 
 ### Hostname
