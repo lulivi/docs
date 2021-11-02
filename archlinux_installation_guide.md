@@ -147,6 +147,15 @@ locale-gen
 To configure keyboard for the current session:
 
 ```bash
+setxkbmap -model <model> \
+          -layout <layout1>[,<layout2>] \
+          -variant <variant1>[,<variant2>] \
+          -option <option1> -option <option2>
+```
+
+e.g.:
+
+```bash
 setxkbmap -model pc104 -layout us,us -variant altgr-intl,dvorak-alt-intl -option grp:alt_space_to
 ```
 
@@ -156,8 +165,20 @@ Also an alternative layout with Dvorak can be switched using `Alt`+`Space`.
 To make this configuration default after restart, we will use `localectl`:
 
 ```bash
+localectl set-x11-keymap <layout1>[,<layout2>] \
+                         <variant1>[,<variant2>] \
+                         <option1>[,<option2>]
+```
+
+e.g.:
+
+```
+
+```bash
 localectl set-x11-keymap us,us pc104 altgr-intl,dvorak-alt-intl grp:alt_space_toggle
 ```
+
+Add the option `ctrl:swapcaps` in order to change the position between CapLocs and LeftControl.
 
 ### Hostname
 
