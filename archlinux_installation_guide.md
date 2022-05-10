@@ -157,6 +157,7 @@ e.g.:
 
 ```bash
 setxkbmap -model pc104 -layout us,us -variant altgr-intl,dvorak-alt-intl -option grp:alt_space_to
+setxkbmap -model pc104 -layout us -variant altgr-intl -option ctrl:nocaps
 ```
 
 This will set the keyboard to US layout with dead keys using AltGr (áéíóúñ).
@@ -172,13 +173,17 @@ localectl set-x11-keymap <layout1>[,<layout2>] \
 
 e.g.:
 
-```
-
 ```bash
 localectl set-x11-keymap us,us pc104 altgr-intl,dvorak-alt-intl grp:alt_space_toggle
+localectl set-x11-keymap us pc104 altgr-intl ctrl:nocaps
 ```
 
-Add the option `ctrl:swapcaps` in order to change the position between CapLocs and LeftControl.
+Some util options:
+
+| Option          | Comment                 |
+|-----------------|-------------------------|
+| `ctrl:nocaps`   | Caps Lock as Ctrl       |
+| `ctrl:swapcaps` | Swap Ctrl and Caps Lock |
 
 ### Hostname
 
